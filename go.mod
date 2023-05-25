@@ -3,7 +3,7 @@ module github.com/eric2788/common-services
 go 1.20
 
 require (
-	github.com/eric2788/common-utils v0.0.0-20230525073059-2b6d31e1e06c
+	github.com/eric2788/common-utils v0.0.0-20230525091222-b3a8c2936e11
 	github.com/sirupsen/logrus v1.9.2
 )
 
