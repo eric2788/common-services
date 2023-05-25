@@ -3,6 +3,8 @@ package bilibili
 import (
 	"strings"
 	"time"
+
+	"github.com/eric2788/common-utils/request"
 )
 
 var mixinKeyEncTab = []byte{
@@ -45,7 +47,7 @@ func UpdateSaltKey() {
 // getWbiKey get img_key and sub_key
 func getWbiKey() (string, string) {
 	var resp NavInfo
-	_, err := requester.Get("https://api.bilibili.com/x/web-interface/nav", &resp)
+	_, err := apiRequester.Get("/web-interface/nav", &resp, request.DataDecoder(request.JsonDecoder)) // avoid error throw while resp.Code is not 0
 	if err != nil {
 		logger.Errorf("Error when getting wbi key: %v", err)
 		return "", ""

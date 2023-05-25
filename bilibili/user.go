@@ -32,7 +32,7 @@ func GetUserInfo(uid int64) (*UserInfo, error) {
 		return nil, err
 	}
 
-	_, err = requester.Get("https://api.bilibili.com/x/space/wbi/acc/info", &resp,
+	_, err = apiRequester.Get("/space/wbi/acc/info", &resp,
 		request.Query(map[string]interface{}{
 			"mid": uid,
 			"platform": "web",
@@ -40,6 +40,10 @@ func GetUserInfo(uid int64) (*UserInfo, error) {
 			"web_location": "1550101",
 			"wts": wts,
 			"w_rid": w_rid,
+		}),
+		request.Headers(map[string]string{
+			"Referer": "https://space.bilibili.com/" + fmt.Sprint(uid),
+			"Origin": "https://space.bilibili.com",
 		}),
 	)
 
